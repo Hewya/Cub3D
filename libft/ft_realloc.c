@@ -6,7 +6,7 @@
 /*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:39:31 by gabarnou          #+#    #+#             */
-/*   Updated: 2024/07/04 15:03:00 by gabarnou         ###   ########.fr       */
+/*   Updated: 2024/07/09 18:47:30 by gabarnou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static size_t	malloc_usable_size(void *ptr)
 	start = ptr;
 	while (*(char *)ptr == 0)
 		ptr++;
-	return (size_t)(ptr - start);
+	return ((size_t)(ptr - start));
 }
 
 void	*ft_realloc(void *ptr, size_t new_size)

@@ -6,7 +6,7 @@
 /*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 12:18:52 by gabarnou          #+#    #+#             */
-/*   Updated: 2024/07/03 16:27:51 by gabarnou         ###   ########.fr       */
+/*   Updated: 2024/07/09 18:41:28 by gabarnou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,28 @@
 
 char	*get_next_line(int fd)
 {
-	static char	buf[BS + 1];
-	char		*l;
-	char		*nl;
-	int			rc;
-	int			tc;
+	static char	buff[BUFFER_SIZE + 1];
+	t_gnl		gnl;
 
-	l = ft_strdup(buf);
-	while (!(nl = ft_strchr(l, '\n')) && (rc = read(fd, buf, BS)))
+	gnl.line = ft_strdup(buff);
+	gnl.new_line = ft_strchr(gnl.line, '\n');
+	gnl.read_counter = read(fd, buff, BUFFER_SIZE);
+	while (!(gnl.new_line) && (gnl.read_counter))
 	{
-		buf[rc] = '\0';
-		l = ft_strjoin_free(l, buf, 1);
+		buff[gnl.read_counter] = '\0';
+		gnl.line = ft_strjoin_free(gnl.line, buff, 1);
 	}
-	if (ft_strlen(l) == 0)
-		return (free(l), NULL);
-	if (nl != NULL)
+	if (ft_strlen(gnl.line) == 0)
+		return (free(gnl.line), NULL);
+	if (gnl.new_line != NULL)
 	{
-		tc = nl - l + 1;
-		ft_strcpy(buf, nl + 1);
+		gnl.to_copy = gnl.new_line - gnl.line + 1;
+		ft_strcpy(buff, gnl.new_line + 1);
 	}
 	else
 	{
-		tc = ft_strlen(l);
-		buf[0] = '\0';
+		gnl.to_copy = ft_strlen(gnl.line);
+		buff[0] = '\0';
 	}
-	return (l[tc] = '\0', l);
+	return (gnl.line[gnl.to_copy] = '\0', gnl.line);
 }
