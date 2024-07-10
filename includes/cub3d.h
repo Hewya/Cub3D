@@ -6,24 +6,28 @@
 /*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 13:55:40 by gabarnou          #+#    #+#             */
-/*   Updated: 2024/07/04 16:18:20 by gabarnou         ###   ########.fr       */
+/*   Updated: 2024/07/10 16:54:09 by gabarnou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include ".././libft/libft.h"
+# include "../libft/libft.h"
+# include "../minilibx-linux/mlx.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stddef.h>
 # include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <stdbool.h>
 # include <unistd.h>
 
 # define SUCCESS 0
 # define FAILURE 1
+# define PLAYER_SPEED 0.02f
+# define M_PI			3.14159265358979323846
 
 // mettre les angles en double
 
@@ -63,7 +67,8 @@ typedef struct s_data
 	t_map			map;
 	t_texture_path	texture_path;
 	t_2float		player_pos;
-}					t_data;
+	float			player_dir;
+}						t_data;
 
 // typedef struct s_cub_map
 // {

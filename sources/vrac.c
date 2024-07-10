@@ -6,7 +6,7 @@
 /*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:47:10 by gabarnou          #+#    #+#             */
-/*   Updated: 2024/07/04 15:47:27 by gabarnou         ###   ########.fr       */
+/*   Updated: 2024/07/10 12:23:14 by gabarnou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,3 +38,9 @@ int	find_player(t_data *data)
 	}
 	return (0);
 }
+
+double	deg_to_rad(double deg)
+{
+	return (deg * M_PI / 180.0);
+}
+
