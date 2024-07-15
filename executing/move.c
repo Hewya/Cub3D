@@ -6,7 +6,7 @@
 /*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 12:11:38 by gabarnou          #+#    #+#             */
-/*   Updated: 2024/07/10 12:30:07 by gabarnou         ###   ########.fr       */
+/*   Updated: 2024/07/15 00:49:17 by gabarnou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	move_forward(t_data *data)
 {
-	t_2float	new_pos;
-	int			ret;
+	t_pos	new_pos;
+	int		ret;
 
 	ret = 0;
 	new_pos = data->player_pos;
@@ -34,8 +34,8 @@ int	move_forward(t_data *data)
 
 int	move_backward(t_data *data)
 {
-	t_2float	new_pos;
-	int			ret;
+	t_pos	new_pos;
+	int		ret;
 
 	ret = 0;
 	new_pos = data->player_pos;
@@ -54,8 +54,8 @@ int	move_backward(t_data *data)
 
 int	move_left(t_data *data)
 {
-	t_2float	new_pos;
-	int			ret;
+	t_pos	new_pos;
+	int		ret;
 
 	ret = 0;
 	new_pos = data->player_pos;
@@ -74,8 +74,8 @@ int	move_left(t_data *data)
 
 int	move_right(t_data *data)
 {
-	t_2float	new_pos;
-	int			ret;
+	t_pos	new_pos;
+	int		ret;
 
 	ret = 0;
 	new_pos = data->player_pos;
