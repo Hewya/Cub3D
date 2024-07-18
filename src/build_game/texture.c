@@ -6,7 +6,7 @@
 /*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 18:21:11 by gabarnou          #+#    #+#             */
-/*   Updated: 2024/07/17 20:17:57 by gabarnou         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:51:21 by gabarnou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	init_img(t_map *map)
 	map->scale_height = DEFAULT_WIN_H / (max_dimension * (DEFAULT_WIN_H / 125));
 }
 
-void	ft_put_pixel_to_background(t_game_data *data)
+void	put_pixel_to_background(t_game_data *data)
 {
 	int	x;
 	int	y;

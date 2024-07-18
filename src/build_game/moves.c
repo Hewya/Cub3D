@@ -6,7 +6,7 @@
 /*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 18:30:23 by gabarnou          #+#    #+#             */
-/*   Updated: 2024/07/17 19:52:46 by gabarnou         ###   ########.fr       */
+/*   Updated: 2024/07/18 20:14:41 by gabarnou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,33 +39,34 @@ void	rotate(t_game_data *data, int dir)
 {
 	data->player.coord.a = norm_angle(data->player.coord.a -
 			(ROTATIONSPEED * dir));
-	ft_put_pixel_to_background(data);
+	put_pixel_to_backgroud(data);
 	raycast(data);
 	draw_minimap(data);
 }
 
-void	key_hook(void *param)
+int	*key_hook(int keycode, void *param)
 {
 	t_game_data	*data;
 
 	data = param;
-	if (mlx_is_key_down(data->mlx_connection, XK_KP_Left))
+	if (keycode == XK_KP_Left)
 		rotate(data, -1);
-	if (mlx_is_key_down(data->mlx_connection, XK_KP_Right))
+	if (keycode == XK_KP_Right)
 		rotate(data, 1);
-	if (mlx_is_key_down(data->mlx_connection, XK_w))
+	if (keycode == XK_w)
 		move(data, data->player.coord.a);
-	if (mlx_is_key_down(data->mlx_connection,XK_s))
+	if (keycode == XK_s)
 		move(data, data->player.coord.a - M_PI);
-	if (mlx_is_key_down(data->mlx_connection, XK_a))
+	if (keycode == XK_a)
 		move(data, data->player.coord.a + M_PI_2);
-	if (mlx_is_key_down(data->mlx_connection, XK_d))
+	if (keycode == XK_d)
 		move(data, data->player.coord.a - M_PI_2);
-	if (mlx_is_key_down(data->mlx_connection, XK_Escape))
+	if (keycode == XK_Escape)
 		mlx_destroy_window(data->mlx_connection, data->mlx_window);
-	ft_put_pixel_to_background(data);
+	put_pixel_to_backgroud(data);
 	raycast(data);
 	draw_minimap(data);
+	return (0);
 }
 
 void	check_and_move(t_game_data *data, t_pos check_wall)

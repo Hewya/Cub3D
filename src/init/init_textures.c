@@ -6,13 +6,13 @@
 /*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 00:52:21 by amoutill          #+#    #+#             */
-/*   Updated: 2024/07/16 19:20:33 by gabarnou         ###   ########.fr       */
+/*   Updated: 2024/07/18 20:56:12 by gabarnou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/game_data.h"
-#include "../include/cub_map.h"
-#include "../minilibx/mlx.h"
+#include "game_data.h"
+#include "cub_map.h"
+#include "mlx.h"
 
 int	rgb_to_int(t_rgb	rgb)
 {
@@ -21,7 +21,7 @@ int	rgb_to_int(t_rgb	rgb)
 
 void	init_texture(t_texture *texture, void *mlx_connection, char *text_path)
 {
-	texture->image = mlx_png_file_to_image(mlx_connection, text_path,
+	texture->image = mlx_xpm_file_to_image(mlx_connection, text_path,
 			&texture->width, &texture->height);
 	if (!texture->image)
 		return ;

@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   init_game_data.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amoutill <amoutill@student.42lehavre.fr>   +#+  +:+       +#+        */
+/*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 03:25:55 by amoutill          #+#    #+#             */
-/*   Updated: 2024/07/15 04:18:22 by amoutill         ###   ########.fr       */
+/*   Updated: 2024/07/18 20:38:23 by gabarnou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/game_data.h"
-#include "../include/cub_map.h"
-#include "../include/ft_perror.h"
-#include "../include/init_mlx.h"
-#include "../include/init_textures.h"
+#include "game_data.h"
+#include "cub_map.h"
+#include "ft_perror.h"
+#include "init_mlx.h"
+#include "init_textures.h"
 #include <fcntl.h>
 #include <stdio.h>
 

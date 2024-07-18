@@ -6,7 +6,7 @@
 /*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 19:19:18 by gabarnou          #+#    #+#             */
-/*   Updated: 2024/07/17 18:12:43 by gabarnou         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:45:26 by gabarnou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,19 @@ void	draw_wall(t_game_data *data, t_wall wall, int i)
 	float		scale;
 	t_texture	*texture;
 
-	proj_height = (((data->win_width / 2) / tan(FOV_RAD / 2)) * BLOCK_RES)
+	proj_height = (((DEFAULT_WIN_W / 2) / tan(FOV_RAD / 2)) * BLOCK_RES)
 		/ wall.ray_len;
-	start = (data->win_height / 2) - (proj_height / 2);
+	start = (DEFAULT_WIN_H / 2) - (proj_height / 2);
 	if (start < 0)
 		start = 0;
 	texture = get_texture_side(data, wall);
 	pos_tex.y = 0;
-	if (proj_height >= data->win_height)
-		pos_tex.y = ((proj_height - data->win_height) / 2)
+	if (proj_height >= DEFAULT_WIN_H)
+		pos_tex.y = ((proj_height - DEFAULT_WIN_H) / 2)
 			* (texture->height / proj_height);
 	draw_wall_2(wall, &pos_tex, texture);
 	scale = texture->height / proj_height;
-	while (proj_height-- > 0 && start < data->win_height)
+	while (proj_height-- > 0 && start < DEFAULT_WIN_H)
 	{
 		mlx_pixel_put(data->mlx_window, data->mlx_image, i, start++,
 			get_texture_color(texture, pos_tex.x, pos_tex.y));

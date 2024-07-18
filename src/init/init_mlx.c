@@ -6,13 +6,13 @@
 /*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 01:23:16 by amoutill          #+#    #+#             */
-/*   Updated: 2024/07/16 19:10:35 by gabarnou         ###   ########.fr       */
+/*   Updated: 2024/07/18 20:45:52 by gabarnou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/game_data.h"
-#include "../minilibx/mlx.h"
-#include "../include/init_mlx.h"
+#include "game_data.h"
+#include "mlx.h"
+#include "init_mlx.h"
 
 int	init_mlx(t_game_data *game_data)
 {

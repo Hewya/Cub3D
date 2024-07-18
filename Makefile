@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amoutill <amoutill@student.42lehavre.fr>   +#+  +:+       +#+         #
+#    By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/04 03:52:33 by amoutill          #+#    #+#              #
-#    Updated: 2024/07/15 05:02:51 by amoutill         ###   ########.fr        #
+#    Updated: 2024/07/18 20:51:05 by gabarnou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,26 +20,50 @@ LIBFT_DIR = lib/libft
 LIBFT_LIB = $(LIBFT_DIR)/libft.a
 LIBFT_INCLUDE = $(LIBFT_DIR)
 
-MINILIBX_DIR = lib/minilibx
+MINILIBX_DIR = minilibx-linux
 MINILIBX_LIB = $(MINILIBX_DIR)/libmlx.a
 MINILIBX_INCLUDE = $(MINILIBX_DIR)
 
-CFLAGS = -Wall -Wextra -Wpedantic -Werror -g -O0 #-fsanitize=address
+CFLAGS = -Wall -Wextra -Wpedantic -Werror -g -O0 -I include -I minilibx-linux #-fsanitize=address
 
 NAME = cub3d
 
-SRC_FILES = main.c parse_cub_map.c parse_cub_map_utils.c parse_cub_map_utils_1.c parsing_utils.c sanitize_map.c is_valid_map.c is_enclosed.c init_player.c init_game_data.c ft_perror.c init_mlx.c init_textures.c
+SRC_FILES = main.c \
+			ft_perror.c \
+			map_parser/parse_cub_map.c \
+			map_parser/parse_cub_map_utils.c \
+			map_parser/parse_cub_map_utils_1.c \
+			map_parser/parsing_utils.c \
+			map_parser/sanitize_map.c \
+			map_parser/is_valid_map.c \
+			map_parser/is_enclosed.c \
+			init/init_player.c \
+			init/init_game_data.c \
+			init/init_mlx.c \
+			init/init_textures.c \
+			build_game/drawing_wall.c \
+			build_game/finding_wall.c \
+			build_game/minimap.c \
+			build_game/moves.c \
+			build_game/ray_stuff.c \
+			build_game/texture.c \
+
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJS = $(addprefix $(BUILD_DIR)/, $(SRC_FILES:.c=.o))
 
-all: $(NAME)
+all: $(BUILD_DIR) $(NAME)
+
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
+	mkdir -p $(BUILD_DIR)/build_game
+	mkdir -p $(BUILD_DIR)/map_parser
+	mkdir -p $(BUILD_DIR)/init
 
 $(NAME): $(OBJS) $(LIBFT_LIB) $(MINILIBX_LIB)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_LIB) $(MINILIBX_LIB) -o $(NAME)
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(BUILD_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT_LIB):
@@ -54,7 +78,6 @@ clean:
 fclean: clean
 	rm -rf $(NAME)
 	$(MAKE) -C $(LIBFT_DIR) fclean
-	$(MAKE) -C $(MINILIBX_DIR) clean
 
 re: fclean all
 

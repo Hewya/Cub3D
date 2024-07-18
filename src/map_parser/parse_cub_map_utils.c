@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cub_map_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amoutill <amoutill@student.42lehavre.fr>   +#+  +:+       +#+        */
+/*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 18:05:18 by amoutill          #+#    #+#             */
-/*   Updated: 2024/07/15 00:43:05 by amoutill         ###   ########.fr       */
+/*   Updated: 2024/07/18 20:37:22 by gabarnou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub_map.h"
+#include "cub_map.h"
 
 t_setting_type	get_setting_type(const char *line)
 {

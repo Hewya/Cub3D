@@ -6,7 +6,7 @@
 /*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 12:30:27 by gabarnou          #+#    #+#             */
-/*   Updated: 2024/07/16 19:07:46 by gabarnou         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:42:00 by gabarnou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ double	norm_angle(double angle)
 
 bool	is_off_map(t_game_data *data, t_pos intercept)
 {
-	if (intercept.x > (data->map_length * BLOCK_RES)
+	if (intercept.x > (data->map_data.map_length * BLOCK_RES)
 		|| intercept.x < 0 || intercept.y < 0
-		|| intercept.y >= (data->map_height * BLOCK_RES)
+		|| intercept.y >= (data->map_data.map_height * BLOCK_RES)
 		|| isnan(intercept.x) || isnan(intercept.y))
 		return (true);
 	return (false);
