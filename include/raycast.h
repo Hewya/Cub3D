@@ -6,7 +6,7 @@
 /*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 17:02:30 by gabarnou          #+#    #+#             */
-/*   Updated: 2024/07/18 20:16:07 by gabarnou         ###   ########.fr       */
+/*   Updated: 2024/07/19 17:48:13 by gabarnou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_wall
 
 
 // DRAWING_WALL //
-uint32_t	get_texture_color(t_texture *texture, int tex_x, int tex_y);
+uint32_t	get_texture_color(t_texture texture, int tex_x, int tex_y);
 void		draw_wall(t_game_data *data, t_wall wall, int i);
 
 // FINDING_WALL //
@@ -64,7 +64,8 @@ void	draw_minimap(t_game_data *data);
 
 // TEXTURE //
 uint32_t	pixel(int32_t r, int32_t g, int32_t b, int32_t a);
-int			length_map(t_game_data *map);
+int			length_map(t_map *map);
+int			ft_tablen(char **tab);
 void		init_img(t_map *map);
 void		put_pixel_to_background(t_game_data *data);
 
@@ -78,7 +79,7 @@ void	raycast(t_game_data *data);
 // MOVES //
 void	move(t_game_data *data, double angle);
 void	rotate(t_game_data *data, int dir);
-int		key_hook(int keycode, void *param);
+int		key_hook(void *param, int keycode);
 void	check_and_move(t_game_data *data, t_pos check_wall);
 
 

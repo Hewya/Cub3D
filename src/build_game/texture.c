@@ -6,7 +6,7 @@
 /*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 18:21:11 by gabarnou          #+#    #+#             */
-/*   Updated: 2024/07/18 18:51:21 by gabarnou         ###   ########.fr       */
+/*   Updated: 2024/07/19 17:34:46 by gabarnou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ uint32_t	pixel(int32_t r, int32_t g, int32_t b, int32_t a)
 	return ((r << 24) | (g << 16) | (b << 8) | a);
 }
 
-int	length_map(t_game_data *map)
+int	length_map(t_map *map)
 {
 	int	i;
 	int	j;
@@ -25,10 +25,10 @@ int	length_map(t_game_data *map)
 
 	i = 0;
 	len = 0;
-	while (map->map[i])
+	while (map->map.map[i])
 	{
 		j = 0;
-		while (map->map[i][j])
+		while (map->map.map[i][j])
 		{
 			if (j > len)
 				len++;
@@ -38,13 +38,23 @@ int	length_map(t_game_data *map)
 	}
 	return (len);
 }
+int	ft_tablen(char **tab)
+{
+	size_t	i;
+
+	i = 0;
+	if (tab)
+		while (tab[i])
+			i++;
+	return (i);
+}
 
 void	init_img(t_map *map)
 {
 	double	max_dimension;
 
 	map->map_length = length_map(map);
-	map->map_height = ft_tablen(map->map);
+	map->map_height = ft_tablen(map->map.map);
 	if (map->map_length >= map->map_height)
 		max_dimension = map->map_length;
 	else

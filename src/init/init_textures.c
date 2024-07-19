@@ -6,13 +6,13 @@
 /*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 00:52:21 by amoutill          #+#    #+#             */
-/*   Updated: 2024/07/18 20:56:12 by gabarnou         ###   ########.fr       */
+/*   Updated: 2024/07/19 17:11:58 by gabarnou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game_data.h"
 #include "cub_map.h"
-#include "mlx.h"
+#include "../minilibx-linux/mlx.h"
 
 int	rgb_to_int(t_rgb	rgb)
 {

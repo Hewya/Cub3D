@@ -6,7 +6,7 @@
 /*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 18:14:14 by gabarnou          #+#    #+#             */
-/*   Updated: 2024/07/17 20:12:45 by gabarnou         ###   ########.fr       */
+/*   Updated: 2024/07/19 17:22:55 by gabarnou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ void	draw_minimap(t_game_data *data)
 		{
 			if (data->map[i][j] == '1')
 				draw_square(data, (j * data->map_data.scale_width) + 20,
-					(i * data->map_data.scale_height) + 20, ft_pixel(0, 0, 0, 255));
+					(i * data->map_data.scale_height) + 20, pixel(0, 0, 0, 255));
 			else if (data->map[i][j] == '0' || is_player_tile(data->map[i][j]))
 				draw_square(data, (j * data->map_data.scale_width) + 20,
 					(i * data->map_data.scale_height) + 20,
-					ft_pixel(255, 255, 255, 100));
+					pixel(255, 255, 255, 100));
 			j++;
 		}
 		i++;
@@ -62,5 +62,5 @@ void	draw_minimap(t_game_data *data)
 		* data->map_data.scale_width) + 20,
 		(((data->player.coord.y - BLOCK_RES / 2) / BLOCK_RES)
 		* data->map_data.scale_height) + 20,
-		ft_pixel(255, 0, 0, 255));
+		pixel(255, 0, 0, 255));
 }

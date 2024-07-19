@@ -6,7 +6,7 @@
 /*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 12:30:27 by gabarnou          #+#    #+#             */
-/*   Updated: 2024/07/18 18:42:00 by gabarnou         ###   ########.fr       */
+/*   Updated: 2024/07/19 17:26:41 by gabarnou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	raycast(t_game_data *data)
 	{
 		ray_angle = norm_angle(ray_angle);
 		ray_data = ray_len(data, ray_angle);
-		ft_draw_wall(data, ray_data, i);
+		draw_wall(data, ray_data, i);
 		//ray_angle -= FOV_RAD / WINDOW_WIDTH;
 		i++;
 	}

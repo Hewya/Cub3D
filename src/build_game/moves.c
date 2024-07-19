@@ -6,7 +6,7 @@
 /*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 18:30:23 by gabarnou          #+#    #+#             */
-/*   Updated: 2024/07/18 20:14:41 by gabarnou         ###   ########.fr       */
+/*   Updated: 2024/07/19 17:47:57 by gabarnou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,19 @@ void	move(t_game_data *data, double angle)
 		len = MOVESPEED;
 	check_wall.x = data->player.coord.x + cos(angle) * len;
 	check_wall.y = data->player.coord.y - sin(angle) * len;
-	return (check_and_move(data, check_wall));
+	check_and_move(data, check_wall);
 }
 
 void	rotate(t_game_data *data, int dir)
 {
 	data->player.coord.a = norm_angle(data->player.coord.a -
 			(ROTATIONSPEED * dir));
-	put_pixel_to_backgroud(data);
+	put_pixel_to_background(data);
 	raycast(data);
 	draw_minimap(data);
 }
 
-int	*key_hook(int keycode, void *param)
+int	key_hook(void *param, int keycode)
 {
 	t_game_data	*data;
 
@@ -63,7 +63,7 @@ int	*key_hook(int keycode, void *param)
 		move(data, data->player.coord.a - M_PI_2);
 	if (keycode == XK_Escape)
 		mlx_destroy_window(data->mlx_connection, data->mlx_window);
-	put_pixel_to_backgroud(data);
+	put_pixel_to_background(data);
 	raycast(data);
 	draw_minimap(data);
 	return (0);
