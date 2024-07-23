@@ -17,7 +17,7 @@
 # include "game_data.h"
 # include "init_mlx.h"
 # include "cub_map.h"
-# include "../minilibx-linux/mlx_int.h"
+# include "../lib/minilibx-linux/mlx_int.h"
 
 # include <limits.h>
 # include <math.h>

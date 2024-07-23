@@ -14,7 +14,7 @@
 # define TEXTURES_H
 
 #include <stdint.h>
-# include "../minilibx-linux/mlx.h"
+# include "../lib/minilibx-linux/mlx.h"
 
 typedef struct s_texture
 {

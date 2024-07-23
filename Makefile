@@ -6,7 +6,7 @@
 #    By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/04 03:52:33 by amoutill          #+#    #+#              #
-#    Updated: 2024/07/19 17:44:10 by gabarnou         ###   ########.fr        #
+#    Updated: 2024/07/24 01:02:00 by amoutill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBFT_DIR = lib/libft
 LIBFT_LIB = $(LIBFT_DIR)/libft.a
 LIBFT_INCLUDE = $(LIBFT_DIR)
 
-MINILIBX_DIR = minilibx-linux
+MINILIBX_DIR = lib/minilibx-linux
 MINILIBX_LIB = $(MINILIBX_DIR)/libmlx.a
 MINILIBX_INCLUDE = $(MINILIBX_DIR)
 
@@ -61,7 +61,7 @@ $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)/init
 
 $(NAME): $(OBJS) $(LIBFT_LIB) $(MINILIBX_LIB)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_LIB) $(MINILIBX_LIB) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_LIB) $(MINILIBX_LIB) -o $(NAME) -lXext -lX11 -lm
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@

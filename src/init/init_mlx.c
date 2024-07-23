@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "game_data.h"
-#include "mlx.h"
+#include "../lib/minilibx-linux/mlx.h"
 #include "init_mlx.h"
 
 int	init_mlx(t_game_data *game_data)

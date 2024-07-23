@@ -12,7 +12,7 @@
 
 #include "game_data.h"
 #include "cub_map.h"
-#include "../minilibx-linux/mlx.h"
+#include "../lib/minilibx-linux/mlx.h"
 
 int	rgb_to_int(t_rgb	rgb)
 {
