@@ -6,7 +6,7 @@
 #    By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/04 03:52:33 by amoutill          #+#    #+#              #
-#    Updated: 2024/07/24 01:02:00 by amoutill         ###   ########.fr        #
+#    Updated: 2024/07/24 02:02:30 by amoutill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ MINILIBX_DIR = lib/minilibx-linux
 MINILIBX_LIB = $(MINILIBX_DIR)/libmlx.a
 MINILIBX_INCLUDE = $(MINILIBX_DIR)
 
-CFLAGS = -Wall -Wextra -Wpedantic -Werror -g -O0 -I include -I minilibx-linux #-fsanitize=address
+CFLAGS = -Wall -Wextra -Wpedantic -g -O0 -I include -I minilibx-linux -I/opt/X11/include #-fsanitize=address
 
 NAME = cub3d
 
@@ -61,7 +61,7 @@ $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)/init
 
 $(NAME): $(OBJS) $(LIBFT_LIB) $(MINILIBX_LIB)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_LIB) $(MINILIBX_LIB) -o $(NAME) -lXext -lX11 -lm
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_LIB) $(MINILIBX_LIB) -o $(NAME) -L/opt/X11/lib -lX11 -lm -framework AppKit -framework OpenGL -framework Foundation -framework CoreFoundation -L/usr/local/lib -lz
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@

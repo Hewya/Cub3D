@@ -6,11 +6,12 @@
 /*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 18:30:23 by gabarnou          #+#    #+#             */
-/*   Updated: 2024/07/19 17:47:57 by gabarnou         ###   ########.fr       */
+/*   Updated: 2024/07/24 01:59:37 by amoutill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycast.h"
+#include <X11/keysym.h>
 
 void	move(t_game_data *data, double angle)
 {

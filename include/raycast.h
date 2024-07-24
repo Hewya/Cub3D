@@ -6,7 +6,7 @@
 /*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 17:02:30 by gabarnou          #+#    #+#             */
-/*   Updated: 2024/07/19 17:48:13 by gabarnou         ###   ########.fr       */
+/*   Updated: 2024/07/24 01:54:51 by amoutill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "game_data.h"
 # include "init_mlx.h"
 # include "cub_map.h"
-# include "../lib/minilibx-linux/mlx_int.h"
 
 # include <limits.h>
 # include <math.h>
