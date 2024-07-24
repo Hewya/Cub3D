@@ -6,7 +6,7 @@
 #    By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/04 03:52:33 by amoutill          #+#    #+#              #
-#    Updated: 2024/07/24 02:02:30 by amoutill         ###   ########.fr        #
+#    Updated: 2024/07/24 02:15:07 by amoutill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ SRC_FILES = main.c \
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJS = $(addprefix $(BUILD_DIR)/, $(SRC_FILES:.c=.o))
 
-all: $(BUILD_DIR) $(NAME)
+all: $(NAME)
 
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
@@ -60,8 +60,8 @@ $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)/map_parser
 	mkdir -p $(BUILD_DIR)/init
 
-$(NAME): $(OBJS) $(LIBFT_LIB) $(MINILIBX_LIB)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_LIB) $(MINILIBX_LIB) -o $(NAME) -L/opt/X11/lib -lX11 -lm -framework AppKit -framework OpenGL -framework Foundation -framework CoreFoundation -L/usr/local/lib -lz
+$(NAME): $(BUILD_DIR) $(OBJS) $(LIBFT_LIB) $(MINILIBX_LIB)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_LIB) $(MINILIBX_LIB) -o $(NAME) -lXext -lX11 -lm 
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -81,7 +81,8 @@ fclean: clean
 
 re: fclean all
 
-a: clean all
+a: clean $(BUILD_DIR) $(OBJS) $(LIBFT_LIB) $(MINILIBX_LIB)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_LIB) $(MINILIBX_LIB) -o $(NAME) -L/opt/X11/lib -lX11 -lm -framework AppKit -framework OpenGL -framework Foundation -framework CoreFoundation -L/usr/local/lib -lz
 	codesign -s "Axel Moutillon" --entitlements=get-task-allow.plist ./$(NAME)
 
 .PHONY: all clean fclean re a
