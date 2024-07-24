@@ -1,4 +1,5 @@
 .vscode
-cub3b
+cub3d
+*.a
 *.o
 minilibx-linux
