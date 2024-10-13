@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   sanitize_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amoutill <amoutill@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 22:26:17 by amoutill          #+#    #+#             */
-/*   Updated: 2024/07/18 20:37:52 by gabarnou         ###   ########.fr       */
+/*   Updated: 2024/07/13 00:56:14 by amoutill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub_map.h"
-#include <sys/types.h>
+#include "../include/cub_map.h"
 
 static size_t	ft_max_strlen_split(char **split)
 {

@@ -6,17 +6,33 @@
 /*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 00:52:21 by amoutill          #+#    #+#             */
-/*   Updated: 2024/07/19 17:11:58 by gabarnou         ###   ########.fr       */
+/*   Updated: 2024/07/25 21:24:04 by gabarnou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game_data.h"
-#include "cub_map.h"
-#include "../lib/minilibx-linux/mlx.h"
+#include "../include/game_data.h"
+#include "../include/cub_map.h"
+#include "../lib/minilibx/mlx.h"
 
 int	rgb_to_int(t_rgb	rgb)
 {
 	return ((rgb.r << 16) + (rgb.g << 8) + rgb.b);
+}
+
+void	free_textures(t_game_data *game_data)
+{
+	if (game_data->textures.north.image)
+		mlx_destroy_image(game_data->mlx_connection,
+			game_data->textures.north.image);
+	if (game_data->textures.south.image)
+		mlx_destroy_image(game_data->mlx_connection,
+			game_data->textures.south.image);
+	if (game_data->textures.east.image)
+		mlx_destroy_image(game_data->mlx_connection,
+			game_data->textures.east.image);
+	if (game_data->textures.west.image)
+		mlx_destroy_image(game_data->mlx_connection,
+			game_data->textures.west.image);
 }
 
 void	init_texture(t_texture *texture, void *mlx_connection, char *text_path)
@@ -48,9 +64,6 @@ int	init_textures(t_textures *textures, void *mlx_connection,
 	init_texture(&(textures->west), mlx_connection, cub_map->we_text_path);
 	if (!textures->north.image || !textures->south.image
 		|| !textures->east.image || !textures->west.image)
-	{
-		//TODO: implement: destroy_textures(textures);
 		return (-1);
-	}
 	return (0);
 }

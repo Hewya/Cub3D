@@ -6,7 +6,7 @@
 /*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 12:20:06 by gabarnou          #+#    #+#             */
-/*   Updated: 2024/07/05 02:21:30 by amoutill         ###   ########.fr       */
+/*   Updated: 2024/07/25 22:30:58 by gabarnou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,15 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "../libft.h"
 
-# ifndef BS
-#  define BS 1024
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
 # endif
 
 char	*get_next_line(int fd);
+int		ft_chr(char *s);
+char	*ft_join(char *s1, char *s2);
+void	ft_buf_cut(char *dest);
+int		ft_len(char *s, int j);
 
 #endif

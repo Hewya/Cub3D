@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_perror.c                                        :+:      :+:    :+:   */
+/*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amoutill <amoutill@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/14 04:05:17 by amoutill          #+#    #+#             */
-/*   Updated: 2024/07/14 04:33:52 by amoutill         ###   ########.fr       */
+/*   Created: 2024/07/24 15:39:40 by amoutill          #+#    #+#             */
+/*   Updated: 2024/07/24 15:40:19 by amoutill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/libft/libft.h"
-#include <unistd.h>
+#ifndef MAP_H
+# define MAP_H
 
-int	ft_perror(char *str)
+typedef struct s_map
 {
-	ft_putstr_fd("Error\ncub3d: ", STDERR_FILENO);
-	ft_putstr_fd(str, STDERR_FILENO);
-	ft_putstr_fd("\n", STDERR_FILENO);
-	return (-1);
-}
+	char		**map;
+	int			map_length;
+	int			map_height;
+	float		scale_width;
+	float		scale_height;
+}				t_map;
+
+#endif

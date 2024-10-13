@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cub_map_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amoutill <amoutill@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 18:05:18 by amoutill          #+#    #+#             */
-/*   Updated: 2024/07/18 20:37:22 by gabarnou         ###   ########.fr       */
+/*   Updated: 2024/07/25 22:15:57 by amoutill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub_map.h"
+#include "../include/cub_map.h"
 
 t_setting_type	get_setting_type(const char *line)
 {
@@ -67,6 +67,12 @@ t_rgb	get_color(const char *line)
 	color_split = ft_split(line, ',');
 	if (!color_split)
 	{
+		color.r = -1;
+		return (color);
+	}
+	if (line[ft_strlen(line) - 1] == ',' || ft_splitlen(color_split) != 3)
+	{
+		ft_free_split(color_split);
 		color.r = -1;
 		return (color);
 	}

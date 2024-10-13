@@ -1,13 +1,25 @@
-	  NO ./textures/wood.xpm
 
 
-SO ./textures/mix_bricks.xpm
-    WE     ./textures/moss_bricks.xpm
+
+
+
+
+
+
+
+
+NO ./textures/alexandru.xpm
+
+SO ./textures/shrek.xpm
+
+C        2,119,189
+WE     ./textures/moss_bricks.xpm
 
 EA ./textures/grey.xpm
 
-C 2,119,189
-F 33,33,33 notes
+
+F 33,33,33
+
 
 
 1111111

@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   textures.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amoutill <amoutill@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 19:34:46 by amoutill          #+#    #+#             */
-/*   Updated: 2024/07/17 18:40:25 by gabarnou         ###   ########.fr       */
+/*   Updated: 2024/07/24 20:28:36 by amoutill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TEXTURES_H
 # define TEXTURES_H
 
-#include <stdint.h>
-# include "../lib/minilibx-linux/mlx.h"
+# include "../lib/minilibx/mlx.h"
+# include <stdint.h>
+# include <stddef.h>
 
 typedef struct s_texture
 {
@@ -25,7 +26,6 @@ typedef struct s_texture
 	int		bits_per_pixel;
 	int		size_line;
 	int		endian;
-	uint8_t	*pixels;
 }				t_texture;
 
 typedef struct s_textures
@@ -37,5 +37,7 @@ typedef struct s_textures
 	unsigned int	floor;
 	unsigned int	ceil;
 }				t_textures;
+
+void	set_image_pixel_color(t_texture image, int color, size_t x, size_t y);
 
 #endif

@@ -1,7 +1,7 @@
-NO ./texture/wood.xpm
-SO ./texture/red.xpm
-WE ./texture/blue.xpm
-EA ./texture/grey.xpm
+NO ./textures/wood.xpm
+SO ./textures/red.xpm
+WE ./textures/blue.xpm
+EA ./textures/grey.xpm
 
 F 26,32,28
 

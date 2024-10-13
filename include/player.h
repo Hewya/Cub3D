@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amoutill <amoutill@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 19:23:46 by amoutill          #+#    #+#             */
-/*   Updated: 2024/07/17 18:19:24 by gabarnou         ###   ########.fr       */
+/*   Updated: 2024/07/13 02:28:04 by amoutill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef struct s_player
 	t_coord	coord;
 }				t_player;
 
-int	is_player_tile(char c);
 t_player	init_player(char **map);
 void		replace_player_tile(char **map);
 

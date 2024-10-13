@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gaelle <gaelle@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:03:34 by gaelle            #+#    #+#             */
-/*   Updated: 2024/07/09 21:22:09 by amoutill         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:37:51 by gabarnou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,3 @@ void	ft_free_split(char **split)
 		free(split);
 	}
 }
-

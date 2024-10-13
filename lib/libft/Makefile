@@ -50,6 +50,7 @@ SRCS		= ft_atoi.c \
 			  ft_lstnew.c \
 			  ft_lstsize.c \
 			  get_next_line/get_next_line.c \
+			  get_next_line/get_next_line_utils.c \
 
 OBJS		= $(SRCS:.c=.o)
 NAME		= libft.a

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_map.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amoutill <amoutill@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 18:06:06 by amoutill          #+#    #+#             */
-/*   Updated: 2024/07/17 19:58:05 by gabarnou         ###   ########.fr       */
+/*   Updated: 2024/07/15 00:41:26 by amoutill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,6 @@ typedef struct s_cub_map
 	t_rgb	ceil_color;
 	char	**map;
 }				t_cub_map;
-
-typedef struct s_map
-{
-	t_cub_map	map;
-	int			map_length;
-	int			map_height;
-	float		scale_width;
-	float		scale_height;
-}				t_map;
-
 
 char			*get_next_useful_line(const int fd);
 t_setting_type	get_setting_type(const char *line);

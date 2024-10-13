@@ -6,31 +6,22 @@
 /*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 22:03:07 by amoutill          #+#    #+#             */
-/*   Updated: 2024/07/19 17:47:18 by gabarnou         ###   ########.fr       */
+/*   Updated: 2024/07/25 21:42:42 by amoutill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <stdio.h>
-#include "../lib/libft/libft.h"
+#include "../include/ft_perror.h"
 #include "../include/game_data.h"
 #include "../include/raycast.h"
-#include "../include/ft_perror.h"
+#include "../lib/libft/libft.h"
+#include <X11/X.h>
+#include <fcntl.h>
+#include <stdio.h>
 
-void	print_game_data(t_game_data game_data)
+int	exit_hook(t_game_data *game_data)
 {
-	size_t	i;
-
-	i = 0;
-	while (game_data.map[i])
-		printf("%s\n", game_data.map[i++]);
-	printf("player: x: %f, y: %f, a: %f", game_data.player.coord.x,
-			game_data.player.coord.y, game_data.player.coord.a);
-}
-
-void	free_game_data(t_game_data *game_data)
-{
-	ft_free_split(game_data->map);
+	free_game_data(game_data);
+	exit(0);
 }
 
 int	main(int argc, char *argv[])
@@ -38,14 +29,23 @@ int	main(int argc, char *argv[])
 	t_game_data	game_data;
 
 	if (argc != 2)
+	{
 		ft_perror("Usage : ./cub3d maps/<maps_file>.cub");
+		return (1);
+	}
 	else
-	init_game_data(&game_data, argv[1]);
-	//print_game_data(game_data);
-	init_img(&game_data.map_data);
+	{
+		if (init_game_data(&game_data, argv[1]))
+		{
+			free_game_data(&game_data);
+			return (2);
+		}
+	}
 	put_pixel_to_background(&game_data);
 	raycast(&game_data);
-	mlx_key_hook(game_data.mlx_connection, key_hook, &game_data);
+	mlx_key_hook(game_data.mlx_window, key_hook, &game_data);
+	mlx_hook(game_data.mlx_window, DestroyNotify, NoEventMask, exit_hook,
+		&game_data);
 	mlx_loop(game_data.mlx_connection);
 	free_game_data(&game_data);
 }

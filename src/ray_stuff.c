@@ -6,11 +6,11 @@
 /*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 12:30:27 by gabarnou          #+#    #+#             */
-/*   Updated: 2024/07/19 17:26:41 by gabarnou         ###   ########.fr       */
+/*   Updated: 2024/07/25 21:20:18 by gabarnou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycast.h"
+#include "../include/raycast.h"
 
 double	norm_angle(double angle)
 {
@@ -25,9 +25,8 @@ double	norm_angle(double angle)
 
 bool	is_off_map(t_game_data *data, t_pos intercept)
 {
-	if (intercept.x > (data->map_data.map_length * BLOCK_RES)
-		|| intercept.x < 0 || intercept.y < 0
-		|| intercept.y >= (data->map_data.map_height * BLOCK_RES)
+	if (intercept.x >= data->map.map_length || intercept.x < 0
+		|| intercept.y < 0 || intercept.y >= data->map.map_height
 		|| isnan(intercept.x) || isnan(intercept.y))
 		return (true);
 	return (false);
@@ -38,8 +37,8 @@ bool	is_wall(t_game_data *data, t_pos intercept)
 	char	*row;
 	char	value;
 
-	row = data->map[(int)(intercept.y / BLOCK_RES)];
-	value = row[(int)(intercept.x / BLOCK_RES)];
+	row = data->map.map[(int)(intercept.y)];
+	value = row[(int)(intercept.x)];
 	return (value == '1');
 }
 
@@ -64,8 +63,8 @@ t_wall	ray_len(t_game_data *data, double ray_angle)
 
 void	raycast(t_game_data *data)
 {
-	int			i;
-	double		ray_angle;
+	int		i;
+	double	ray_angle;
 	t_wall	ray_data;
 
 	i = 0;
@@ -74,9 +73,11 @@ void	raycast(t_game_data *data)
 	{
 		ray_angle = norm_angle(ray_angle);
 		ray_data = ray_len(data, ray_angle);
-		draw_wall(data, ray_data, i);
-		//ray_angle -= FOV_RAD / WINDOW_WIDTH;
+		draw_column(*data, i, ray_data);
+		ray_angle -= FOV_RAD / WINDOW_WIDTH;
 		i++;
 	}
+	mlx_put_image_to_window(data->mlx_connection, data->mlx_window,
+		data->mlx_image.image, 0, 0);
 	return ;
 }

@@ -6,11 +6,11 @@
 /*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 18:30:23 by gabarnou          #+#    #+#             */
-/*   Updated: 2024/07/24 01:59:37 by amoutill         ###   ########.fr       */
+/*   Updated: 2024/07/25 21:07:23 by amoutill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycast.h"
+#include "../include/raycast.h"
 #include <X11/keysym.h>
 
 void	move(t_game_data *data, double angle)
@@ -18,7 +18,7 @@ void	move(t_game_data *data, double angle)
 	t_pos	check_wall;
 	t_wall	x;
 	t_wall	y;
-	double		len;
+	double	len;
 
 	len = MOVESPEED;
 	x = find_hor_intercept(data, norm_angle(angle));
@@ -38,21 +38,21 @@ void	move(t_game_data *data, double angle)
 
 void	rotate(t_game_data *data, int dir)
 {
-	data->player.coord.a = norm_angle(data->player.coord.a -
-			(ROTATIONSPEED * dir));
+	data->player.coord.a = norm_angle(data->player.coord.a - (ROTATIONSPEED
+				* dir));
 	put_pixel_to_background(data);
 	raycast(data);
 	draw_minimap(data);
 }
 
-int	key_hook(void *param, int keycode)
+int	key_hook(int keycode, void *param)
 {
 	t_game_data	*data;
 
 	data = param;
-	if (keycode == XK_KP_Left)
+	if (keycode == XK_Left)
 		rotate(data, -1);
-	if (keycode == XK_KP_Right)
+	if (keycode == XK_Right)
 		rotate(data, 1);
 	if (keycode == XK_w)
 		move(data, data->player.coord.a);
@@ -63,7 +63,10 @@ int	key_hook(void *param, int keycode)
 	if (keycode == XK_d)
 		move(data, data->player.coord.a - M_PI_2);
 	if (keycode == XK_Escape)
-		mlx_destroy_window(data->mlx_connection, data->mlx_window);
+	{
+		free_game_data(data);
+		exit(0);
+	}
 	put_pixel_to_background(data);
 	raycast(data);
 	draw_minimap(data);

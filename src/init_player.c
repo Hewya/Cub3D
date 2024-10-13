@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amoutill <amoutill@student.42lehavre.fr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 01:19:30 by amoutill          #+#    #+#             */
-/*   Updated: 2024/07/17 18:18:48 by gabarnou         ###   ########.fr       */
+/*   Updated: 2024/07/25 19:44:51 by amoutill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/player.h"
+#include <math.h>
 #include <stddef.h>
 
-int	is_player_tile(char c)
+static int	is_player_tile(char c)
 {
 	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
@@ -37,13 +38,13 @@ static void	get_player_tile_index(char **map, size_t *row, size_t *col)
 static float	angle_from_letter(char c)
 {
 	if (c == 'N')
-		return (0.5f);
+		return (0.5f * M_PI);
 	if (c == 'S')
-		return (1.5f);
+		return (1.5f * M_PI);
 	if (c == 'E')
-		return (0.0f);
+		return (0.0f * M_PI);
 	if (c == 'W')
-		return (1.0f);
+		return (1.0f * M_PI);
 	else
 		return (42);
 }
@@ -55,8 +56,8 @@ t_player	init_player(char **map)
 	t_player	player;
 
 	get_player_tile_index(map, &i, &j);
-	player.coord.x = i + 0.5f;
-	player.coord.y = j + 0.5f;
+	player.coord.x = j + 0.5f;
+	player.coord.y = i + 0.5f;
 	player.coord.a = angle_from_letter(map[i][j]);
 	return (player);
 }

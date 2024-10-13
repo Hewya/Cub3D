@@ -6,11 +6,11 @@
 /*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 18:21:11 by gabarnou          #+#    #+#             */
-/*   Updated: 2024/07/19 17:34:46 by gabarnou         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:40:59 by gabarnou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycast.h"
+#include "../include/raycast.h"
 
 uint32_t	pixel(int32_t r, int32_t g, int32_t b, int32_t a)
 {
@@ -25,10 +25,10 @@ int	length_map(t_map *map)
 
 	i = 0;
 	len = 0;
-	while (map->map.map[i])
+	while (map->map[i])
 	{
 		j = 0;
-		while (map->map.map[i][j])
+		while (map->map[i][j])
 		{
 			if (j > len)
 				len++;
@@ -38,6 +38,7 @@ int	length_map(t_map *map)
 	}
 	return (len);
 }
+
 int	ft_tablen(char **tab)
 {
 	size_t	i;
@@ -49,18 +50,12 @@ int	ft_tablen(char **tab)
 	return (i);
 }
 
-void	init_img(t_map *map)
+void	set_image_pixel_color(t_texture image, int color, size_t x, size_t y)
 {
-	double	max_dimension;
+	int	*pixel;
 
-	map->map_length = length_map(map);
-	map->map_height = ft_tablen(map->map.map);
-	if (map->map_length >= map->map_height)
-		max_dimension = map->map_length;
-	else
-		max_dimension = map->map_height;
-	map->scale_width = DEFAULT_WIN_W / (max_dimension * (DEFAULT_WIN_W / 125));
-	map->scale_height = DEFAULT_WIN_H / (max_dimension * (DEFAULT_WIN_H / 125));
+	pixel = (int *)image.texture;
+	pixel[x + (y * image.width)] = color;
 }
 
 void	put_pixel_to_background(t_game_data *data)
@@ -68,21 +63,20 @@ void	put_pixel_to_background(t_game_data *data)
 	int	x;
 	int	y;
 
-	x = 0;
 	y = 0;
-	while (x < DEFAULT_WIN_W)
+	while (y < WINDOW_HEIGHT)
 	{
-		y = 0;
-		while (y < DEFAULT_WIN_H)
+		x = 0;
+		while (x < WINDOW_WIDTH)
 		{
-			if (y < DEFAULT_WIN_H / 2)
-				mlx_pixel_put(data->mlx_connection ,data->mlx_image,
-					x, y, data->textures.ceil);
+			if (y < WINDOW_HEIGHT / 2)
+				set_image_pixel_color(data->mlx_image, data->textures.ceil, x,
+					y);
 			else
-				mlx_pixel_put(data->mlx_connection ,data->mlx_image,
-					x, y, data->textures.floor);
-			y++;
+				set_image_pixel_color(data->mlx_image, data->textures.floor, x,
+					y);
+			x++;
 		}
-		x++;
+		y++;
 	}
 }

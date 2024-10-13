@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+         #
+#    By: amoutill <amoutill@student.42lehavre.fr>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/04 03:52:33 by amoutill          #+#    #+#              #
-#    Updated: 2024/07/24 02:15:07 by amoutill         ###   ########.fr        #
+#    Updated: 2024/07/25 23:08:19 by amoutill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,50 +20,26 @@ LIBFT_DIR = lib/libft
 LIBFT_LIB = $(LIBFT_DIR)/libft.a
 LIBFT_INCLUDE = $(LIBFT_DIR)
 
-MINILIBX_DIR = lib/minilibx-linux
+MINILIBX_DIR = lib/minilibx
 MINILIBX_LIB = $(MINILIBX_DIR)/libmlx.a
 MINILIBX_INCLUDE = $(MINILIBX_DIR)
 
-CFLAGS = -Wall -Wextra -Wpedantic -g -O0 -I include -I minilibx-linux -I/opt/X11/include #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror # -g -O0 -fsanitize=address,leak
 
 NAME = cub3d
 
-SRC_FILES = main.c \
-			ft_perror.c \
-			map_parser/parse_cub_map.c \
-			map_parser/parse_cub_map_utils.c \
-			map_parser/parse_cub_map_utils_1.c \
-			map_parser/parsing_utils.c \
-			map_parser/sanitize_map.c \
-			map_parser/is_valid_map.c \
-			map_parser/is_enclosed.c \
-			init/init_player.c \
-			init/init_game_data.c \
-			init/init_mlx.c \
-			init/init_textures.c \
-			build_game/drawing_wall.c \
-			build_game/finding_wall.c \
-			build_game/minimap.c \
-			build_game/moves.c \
-			build_game/ray_stuff.c \
-			build_game/texture.c \
-
+SRC_FILES = main.c parse_cub_map.c parse_cub_map_utils.c parse_cub_map_utils_1.c parsing_utils.c sanitize_map.c is_valid_map.c is_enclosed.c init_player.c init_game_data.c ft_perror.c init_mlx.c init_textures.c texture.c moves.c minimap.c finding_wall.c ray_stuff.c rendering.c
 
 SRCS = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJS = $(addprefix $(BUILD_DIR)/, $(SRC_FILES:.c=.o))
 
 all: $(NAME)
 
-$(BUILD_DIR):
-	mkdir -p $(BUILD_DIR)
-	mkdir -p $(BUILD_DIR)/build_game
-	mkdir -p $(BUILD_DIR)/map_parser
-	mkdir -p $(BUILD_DIR)/init
-
-$(NAME): $(BUILD_DIR) $(OBJS) $(LIBFT_LIB) $(MINILIBX_LIB)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_LIB) $(MINILIBX_LIB) -o $(NAME) -lXext -lX11 -lm 
+$(NAME): $(OBJS) $(LIBFT_LIB) $(MINILIBX_LIB)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_LIB) -L$(MINILIBX_DIR) -o $(NAME) -lmlx -lm -lX11 -lXext
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(BUILD_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT_LIB):
@@ -73,16 +49,13 @@ $(MINILIBX_LIB):
 	$(MAKE) -C $(MINILIBX_DIR)
 
 clean:
-	rm -rf $(BUILD_DIR) $(BIN_DIR)
+	rm -rf $(BUILD_DIR)
 
 fclean: clean
 	rm -rf $(NAME)
 	$(MAKE) -C $(LIBFT_DIR) fclean
+	$(MAKE) -C $(MINILIBX_DIR) clean
 
 re: fclean all
 
-a: clean $(BUILD_DIR) $(OBJS) $(LIBFT_LIB) $(MINILIBX_LIB)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_LIB) $(MINILIBX_LIB) -o $(NAME) -L/opt/X11/lib -lX11 -lm -framework AppKit -framework OpenGL -framework Foundation -framework CoreFoundation -L/usr/local/lib -lz
-	codesign -s "Axel Moutillon" --entitlements=get-task-allow.plist ./$(NAME)
-
-.PHONY: all clean fclean re a
+.PHONY: all clean fclean re

@@ -6,13 +6,13 @@
 /*   By: gabarnou <gabarnou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 18:14:14 by gabarnou          #+#    #+#             */
-/*   Updated: 2024/07/19 17:22:55 by gabarnou         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:33:34 by gabarnou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game_data.h"
-#include "player.h"
-#include "raycast.h"
+#include "../include/game_data.h"
+#include "../include/player.h"
+#include "../include/raycast.h"
 
 void	draw_square(t_game_data *data, int x, int y, int colour)
 {
@@ -21,13 +21,13 @@ void	draw_square(t_game_data *data, int x, int y, int colour)
 
 	y_buf = y;
 	x_buf = x;
-	while (x < (data->map_data.scale_width + x_buf))
+	while (x < (data->map.scale_width + x_buf))
 	{
 		y = y_buf;
-		while (y < (data->map_data.scale_height + y_buf))
+		while (y < (data->map.scale_height + y_buf))
 		{
-			if (x > 0 && y > 0 && x < DEFAULT_WIN_W && y < DEFAULT_WIN_H)
-				mlx_pixel_put(data->mlx_window, data->mlx_image, x, y, colour);
+			if (x > 0 && y > 0 && x < WINDOW_WIDTH && y < WINDOW_HEIGHT)
+				set_image_pixel_color(data->mlx_image, colour, x, y);
 			y++;
 		}
 		x++;
@@ -41,26 +41,23 @@ void	draw_minimap(t_game_data *data)
 
 	i = 0;
 	j = 0;
-	while (data->map[i])
+	while (data->map.map[i])
 	{
 		j = 0;
-		while (data->map[i][j])
+		while (data->map.map[i][j])
 		{
-			if (data->map[i][j] == '1')
-				draw_square(data, (j * data->map_data.scale_width) + 20,
-					(i * data->map_data.scale_height) + 20, pixel(0, 0, 0, 255));
-			else if (data->map[i][j] == '0' || is_player_tile(data->map[i][j]))
-				draw_square(data, (j * data->map_data.scale_width) + 20,
-					(i * data->map_data.scale_height) + 20,
-					pixel(255, 255, 255, 100));
+			if (data->map.map[i][j] == '1')
+				draw_square(data, (j * data->map.scale_width) + 20, (i
+						* data->map.scale_height) + 20, pixel(0, 0, 0, 255));
+			else if (data->map.map[i][j] == '0')
+				draw_square(data, (j * data->map.scale_width) + 20, (i
+						* data->map.scale_height) + 20, pixel(255, 255, 255,
+						100));
 			j++;
 		}
 		i++;
 	}
-	draw_square(data,
-		(((data->player.coord.x - BLOCK_RES / 2) / BLOCK_RES)
-		* data->map_data.scale_width) + 20,
-		(((data->player.coord.y - BLOCK_RES / 2) / BLOCK_RES)
-		* data->map_data.scale_height) + 20,
-		pixel(255, 0, 0, 255));
+	draw_square(data, (((data->player.coord.x - 1.0 / 2))
+			* data->map.scale_width) + 20, (((data->player.coord.y - 1.0 / 2))
+			* data->map.scale_height) + 20, pixel(255, 0, 0, 255));
 }
